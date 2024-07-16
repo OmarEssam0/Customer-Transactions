@@ -1,0 +1,35 @@
+<section>
+  <div class="container">
+    <div class="row my-3 g-3">
+      <div class="col-md-6">
+        <input type="text" placeholder="Search by Name" class="form-control" [(ngModel)]="nameFilter" (input)="nameeFilter()">
+      </div>
+      <div class="col-md-6">
+        <input type="string" placeholder="Search by Amount" class="form-control" [(ngModel)]="amountFilter" >
+      </div>
+    </div>
+    <table class="table table-bordered table-striped text-center">
+      <thead>
+        <tr>
+          <th scope="col">#</th>
+          <th scope="col">Name</th>
+          <th scope="col">Total Transaction Amount</th>
+          <th scope="col">Show Gragh</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr *ngFor="let i of customerTransactions | amountSearch:amountFilter">
+          <td>{{i.id}}</td>
+          <td>{{i.name}}</td>
+          <td>{{i.totalAmount}}</td>
+          <td>
+            <button class="btn btn-primary" (click)="showTransactions(i.id)">Show</button>
+          </td>
+        </tr>
+      </tbody>
+    </table>
+
+      <canvas #transactionsChart></canvas>
+
+  </div>
+</section>
